@@ -6,6 +6,7 @@ call pathogen#runtime_append_all_bundles()
 
 " Set leader to comma.
 let mapleader = ","
+let maplocalleader = ","
 
 " Don't redraw screen while executing macros.
 set nolazyredraw
@@ -47,7 +48,10 @@ set suffixes=~,.aux,.bak,.bkp,.dvi,.hi,.o,.pdf,.gz,.idx,.log,.ps,.swp,.tar,.ilg,
 " Create backup files ending in ~, in ~/tmp or, if
 " that is not possible, in the working directory.
 set backup
-set backupdir=~/tmp,.
+set bex=.bak
+" directories for backups
+set backupdir=$HOME/.backup
+set directory=$HOME/.backup
 
 " Flexible backspace: allow backspacing over autoindent, line breaks, start of
 " insert.
@@ -70,7 +74,8 @@ set mat=5  " for half a sec
 
 " Tabs:  default is two spaces.
 set expandtab
-set tabstop=8      " real tabs are 8
+set tabstop=2      " real tabs are 2!
+set bs=2
 set softtabstop=2
 set shiftwidth=2   " for autoindent
 set shiftround     " indent to a multiple of shiftwidth
@@ -102,8 +107,8 @@ set showcmd
 "imap <right> <nop>
 
 " Switch ' and `
-nnoremap ' `
-nnoremap ` '
+"nnoremap ' `
+"nnoremap ` '
 
 " This sets soft wrapping:
 " set wrap linebreak textwidth=0
@@ -182,6 +187,7 @@ nmap zl :ls!<CR>:buf
 
 " Visit todo list
 nmap <Leader>td :e ~/Wiki/TodoList<CR>
+nmap <Leader>tr :e ~/Wiki/FuentesTrecetas<CR>
 
 function! SearchWiki(searchTerm)
   exec ":vimgrep " . a:searchTerm . " ~/Wiki/*"
@@ -189,17 +195,6 @@ function! SearchWiki(searchTerm)
 endfunction
 
 command -nargs=1 Find call SearchWiki(<f-args>)
-
-" Convert markdown buffer to PDF.
-
-function Markdown2PDF()
-   let source = bufname("")
-   let basename = expand("%:r")
-   exec ":! markdown2pdf " . source
-   exec ":Utl openLink " . basename . ".pdf"
-endfunction
-
-map <Leader>p :call Markdown2PDF()<cr><cr>
 
 " Read abbreviations file if present.
 if filereadable(expand("~/.vim/abbrevs.vim"))
@@ -212,7 +207,7 @@ if has("gui_running")
   colorscheme zenburn
   set columns=80
   " set guifont=DejaVu\ Sans\ Mono\ 8  " set in ~/.vimrc
-  set guioptions=ce 
+"  set guioptions=ce 
   "              ||
   "              |+-- use simple dialogs rather than pop-ups
   "              +  use GUI tabs, not console style tabs
@@ -253,22 +248,8 @@ highlight PmenuSel ctermbg=0 ctermfg=4
 " potwiki (personal wiki)
 let potwiki_home = "$HOME/Wiki/WelcomePage"
 
-function UploadICAL()
-   let source = bufname("")
-   let fullname = expand("%")
-   exec ":! icalupload.py " . fullname
-endfunction
+" background black
+set background=dark
+" cambiamos el color de fondo y frente del editor
+hi Normal guibg=black guifg=white
 
-map <Leader>ui :call UploadICAL()<cr>
-
-" ,cd changes working directory to directory of file being edited
-map ,cd :cd %:p:h<CR>
-
-"-----------------------------------------------------------------------
-" Custom digraphs
-
-dig cl 8988 " left corner quote U+231C
-dig cr 8989 " right corner quote U+231D
-
-" makes vim default register = the system clipboard
-set clipboard+=unnamed
