@@ -75,11 +75,13 @@ set mat=5  " for half a sec
 " Tabs:  default is two spaces.
 set expandtab
 set tabstop=2      " real tabs are 2!
-set bs=2
-set softtabstop=2
+set softtabstop=0
 set shiftwidth=2   " for autoindent
 set shiftround     " indent to a multiple of shiftwidth
 set autoindent
+
+nmap <leader>2 :set tabstop=2<cr>:set shiftwidth=2<cr>
+nmap <leader>4 :set tabstop=4<cr>:set shiftwidth=4<cr>
 
 " Reflow paragraphs intelligently. using 'par'.
 set formatprg="par -h -w78 -B=.,\?_A_a "
@@ -253,3 +255,16 @@ set background=dark
 " cambiamos el color de fondo y frente del editor
 hi Normal guibg=black guifg=white
 
+" Detect twig filetype
+au BufNewFile,BufRead *.twig set filetype=jinja
+
+"Ranger
+fun Ranger()
+  silent !ranger --choosefile=/tmp/chosen
+  if filereadable('/tmp/chosen')
+    exec 'edit ' . system('cat /tmp/chosen')
+    call system('rm /tmp/chosen')
+  endif
+  redraw!
+endfun
+map <leader>r :call Ranger()
