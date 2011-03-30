@@ -1,8 +1,12 @@
 "-----------------------------------------------------------------------
 " Basic configuration.
 
+set nomodeline " for security reasons
+set nocompatible
+
 filetype off " temporarily
-call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags() " Load bundles help
+call pathogen#runtime_append_all_bundles() " Load bundles code
 
 " Set leader to comma.
 let mapleader = ","
@@ -21,6 +25,9 @@ endfunction
 nmap <leader>s :call SyntaxToggle()<cr><C-l><cr>
 syntax on
 
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
+
 " Give more context in viewport.
 set scrolloff=3
 
@@ -28,14 +35,9 @@ set scrolloff=3
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-set nomodeline " for security reasons
-set nocompatible
-
 " Encoding and line breaks.
 set encoding=utf-8
 set ffs=unix,dos
-
-set grepprg=grep\ -nH\ $*
 
 " Completion for file open etc.
 set wildmenu
@@ -74,7 +76,7 @@ set mat=5  " for half a sec
 
 " Tabs:  default is two spaces.
 set expandtab
-set tabstop=2      " real tabs are 2!
+set tabstop=2
 set softtabstop=0
 set shiftwidth=2   " for autoindent
 set shiftround     " indent to a multiple of shiftwidth
@@ -98,20 +100,6 @@ set title
 " Show command on last line.
 set showcmd
 
-"" Disable arrow keys.
-"map <up> <nop>
-"map <down> <nop>
-"map <left> <nop>
-"map <right> <nop>
-"imap <up> <nop>
-"imap <down> <nop>
-"imap <left> <nop>
-"imap <right> <nop>
-
-" Switch ' and `
-"nnoremap ' `
-"nnoremap ` '
-
 " This sets soft wrapping:
 " set wrap linebreak textwidth=0
 
@@ -121,10 +109,12 @@ set showcmd
 set hidden
 
 " NOTE: Snipmate won't work in paste mode!
-set pastetoggle=<F2> " formerly <C-a>
+set pastetoggle=<F2>
 
 " Remember more commands.
-set history=200
+set history=2000
+
+set undolevels=1000             " use many levels of undo
 
 " Buffer movement (C-n - next, C-p - previous).
 map <C-n> :bn<cr>
@@ -203,6 +193,10 @@ if filereadable(expand("~/.vim/abbrevs.vim"))
     source ~/.vim/abbrevs.vim
 endif
 
+"colors
+set t_Co=256
+colorscheme aldmeris255
+
 "-----------------------------------------------------------------------
 " GUI Settings {
 if has("gui_running")
@@ -237,8 +231,6 @@ endif
 " Run git rm --cached path_to_submodule (no trailing slash).
 " Commit and delete the now untracked submodule files.
 "
-" NERD_tree (file browser)
-map <leader>n :NERDTreeToggle<CR>
 
 " fuzzyfinder (fuzzy filename completion)
 nmap <leader>b :FufBuffer<CR>
@@ -252,6 +244,7 @@ let potwiki_home = "$HOME/Wiki/WelcomePage"
 
 " background black
 set background=dark
+
 " cambiamos el color de fondo y frente del editor
 hi Normal guibg=black guifg=white
 
@@ -268,3 +261,5 @@ fun Ranger()
   redraw!
 endfun
 map <leader>r :call Ranger()
+
+
