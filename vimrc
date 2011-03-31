@@ -25,7 +25,6 @@ endfunction
 nmap <leader>s :call SyntaxToggle()<cr><C-l><cr>
 syntax on
 
-set number                        " Show line numbers.
 set ruler                         " Show cursor position.
 
 " Give more context in viewport.
