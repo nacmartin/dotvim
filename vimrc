@@ -261,4 +261,3 @@ fun Ranger()
 endfun
 map <leader>r :call Ranger()
 
-
