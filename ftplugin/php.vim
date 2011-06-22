@@ -31,7 +31,7 @@ nmap <buffer> <leader>pc ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#<CR>Inamespace <ES
 
 " Public version:
 " Insert current namespace and opens php and create empty class
-"nmap <F9> ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#g<CR>Inamespace <ESC>d/[A-Z]<CR>Goclass <C-R>=expand("%:t:r")<CR><CR>{<CR>
+map <F9> ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#g<CR>Inamespace <ESC>Goclass <C-R>=expand("%:t:r")<CR><CR>{<CR>
 
 " Insert use statements based on ctags
 map <buffer> <leader>pu :call PhpInsertUse()<CR>

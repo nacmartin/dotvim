@@ -73,11 +73,11 @@ nmap <silent> <leader>l :set invlist list?<cr>
 set showmatch
 set mat=5  " for half a sec
 
-" Tabs:  default is two spaces.
+" Tabs:  default is four spaces.
 set expandtab
-set tabstop=2
+set tabstop=4
 set softtabstop=0
-set shiftwidth=2   " for autoindent
+set shiftwidth=4  " for autoindent
 set shiftround     " indent to a multiple of shiftwidth
 set autoindent
 
