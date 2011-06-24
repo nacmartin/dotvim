@@ -17,21 +17,15 @@ setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 imap <buffer> ` ->
 imap <C-j> $this->
 
-" Insert current class name
-nmap <buffer> <leader>pcn "%pdF.xBdf/:s#/#\\#<CR>
+" Insert current class name in lowercase
+nmap <buffer> <leader>lcn "=tolower(expand("%:t:r"))<CR>P
 
-" Insert current namespace at the top of the file
-"nmap <leader>pn ggo<CR><ESC>"%PdF/r;:s#/#\\#<CR>Inamespace <ESC>d/[A-Z]<CR>
+" Insert full
 
-" Replace namespace and class name based on filename
-nmap <buffer> <leader>pn gg/namespace <CR>D"%PdF/r;:s#/#\\#<CR>Inamespace <ESC>d/[A-Z]<CR>/class <CR>wcw<C-R>=expand("%:t:r")<CR><ESC>
-
-" Insert current namespace and opens php and create empty class
-nmap <buffer> <leader>pc ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#<CR>Inamespace <ESC>d/[A-Z]<CR>Goclass <C-R>=expand("%:t:r")<CR><CR>{<CR>
-
-" Public version:
 " Insert current namespace and opens php and create empty class
 map <F9> ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#g<CR>Inamespace <ESC>Goclass <C-R>=expand("%:t:r")<CR><CR>{<CR>
+
+map <buffer> <leader>ce gg/class <CR>O/**<CR><ESC>d0i <ESC>A @ORM\Entity<CR>@ORM\Table(name="<C-R>=tolower(expand("%:t:r"))<CR>")<CR>/
 
 " Insert use statements based on ctags
 map <buffer> <leader>pu :call PhpInsertUse()<CR>
