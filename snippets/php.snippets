@@ -41,6 +41,12 @@ snippet ormt
 	* @ORM\Table(name="${1}")
 	* @ORM\Entity
 	*/
+snippet ormid
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
 snippet anb
 	@Assert\NotBlank()
 snippet amin
@@ -50,6 +56,16 @@ snippet amax
 snippet atype
 	@Assert\Type("${1:integer}")
 snippet dni
+	public function isValid($value, Constraint $constraint)
+	{
+	    $this->setMessage($constraint->message);
+	    if (preg_match("/^(\d{1,8})([a-zA-Z]{1})$/", $value, $matches)) {
+	        return $this->letra_nif($matches[1]) == strtoupper($matches[2]);
+	    } else {
+	        return false;
+	    }
+	}
+	
 	protected function letra_nif($dni)
 	{
 	    return substr("TRWAGMYFPDXBNJZSQVHLCKE", strtr($dni, "XYZ", "012")%23, 1);
@@ -102,3 +118,146 @@ snippet ch2
 	);
 	
 	$manager->persist($ponencia);
+snippet useorm
+	use Doctrine\ORM\Mapping as ORM;
+snippet useassert
+	use Symfony\Component\Validator\Constraints as Assert;
+snippet ormrepo
+	 @ORM\Entity(repositoryClass="Desymfony\DesymfonyBundle\Entity\PonenteRepository")
+snippet usecons
+	use Symfony\Component\Validator\Constraint;
+snippet useval
+	use Symfony\Component\Validator\ConstraintValidator;
+snippet kerfix
+	new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
+snippet autofix
+	'Doctrine\\Common\\DataFixtures' => __DIR__.'/../vendor/doctrine-fixtures/lib',
+snippet usefix
+	use Doctrine\Common\DataFixtures\AbstractFixture;
+	
+	use Desymfony\DesymfonyBundle\Entity\Usuario,
+	    Desymfony\DesymfonyBundle\Entity\Ponencia,
+	    Desymfony\DesymfonyBundle\Entity\Ponente;
+snippet userepo
+	use Doctrine\ORM\EntityRepository;
+snippet routing
+	ponentes:
+	    pattern: ponentes/
+	    defaults: { _controller: DesymfonyBundle:Ponente:index }
+snippet ormi
+	/**
+	* @ORM\Id
+	* @ORM\Column(type="integer")
+	* @ORM\GeneratedValue(strategy="IDENTITY")
+	*/
+snippet uniq
+	@UniqueEntity(fields="email")
+snippet useuniq
+	use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+snippet usedni
+	use Desymfony\DesymfonyBundle\Validator\DNI;
+snippet userfix
+	for ($i = 0; $i < 100; $i++) {
+	    $usuario = new Usuario();
+	    $usuario->setNombre("Antonio$i");
+	    $usuario->setApellidos("García Mateo");
+	    $usuario->setDNI("11111111H");
+	    $usuario->setDireccion("Aquí mismo");
+	    $usuario->setTelefono("666666666");
+	    $usuario->setEmail("pepe$i@example.com");
+	    $usuario->setPassword("patata");
+	}
+snippet ponentefix
+	foreach ($ponentes as $referencia => $datosPonente) {
+	    $ponente = new Ponente();
+	
+	    foreach ($datosPonente as $propiedad => $valor) {
+	        $ponente->{'set'.ucfirst($propiedad)}($valor);
+	    }
+	
+	    $this->addReference($referencia, $ponente);
+	
+	    $manager->persist($ponente);
+	}
+	
+	$manager->flush();
+snippet repopon
+	return $this->getEntityManager()
+	    ->createQuery('SELECT p FROM Desymfony\DesymfonyBundle\Entity\Ponente p ORDER BY p.nombre ASC')
+	    ->getResult();
+snippet usecont
+	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+snippet ponindex
+	public function indexAction()
+	{
+	    $em = $this->get('doctrine')->getEntityManager();
+	    $ponentes = $em->getRepository('DesymfonyBundle:Ponente')->findTodosAlfabeticamente();
+	
+	    return ($this->render('DesymfonyBundle:Ponente:index.html.twig', array(
+	        'ponentes' => $ponentes
+	    )));
+	}
+snippet ponente
+	<?php
+	
+	namespace Desymfony\DesymfonyBundle\Entity;
+	
+	/**
+	* @ORM\Table(name="ponente")
+	* @ORM\Entity
+	*/
+	
+	class Ponente
+	{
+	
+	    /**
+	     * @ORM\Id
+	     * @ORM\Column(type="integer")
+	     * @ORM\GeneratedValue(strategy="IDENTITY")
+	     */
+	    protected $id;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $nombre;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $apellidos;
+	    
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $biografia;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $telefono;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $url;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $email;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $twitter;
+	
+	    /**
+	     * @ORM\Column(type="string")
+	     */
+	    protected $linkedin;
+	
+	    protected $ponencias;
+	
+	}
+

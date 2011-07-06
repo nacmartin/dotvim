@@ -192,9 +192,24 @@ if filereadable(expand("~/.vim/abbrevs.vim"))
     source ~/.vim/abbrevs.vim
 endif
 
-"colors
-set t_Co=256
-colorscheme aldmeris255
+" Colorscheme
+let g:solarized_termcolors=16
+let g:solarized_termtrans=0
+let g:solarized_menu=0
+let g:solarized_italic=0
+syntax enable
+set background=dark
+colorscheme solarized
+
+" cambiamos el color de fondo y frente del editor
+hi Normal guibg=black guifg=white
+
+function! TogBG()
+    let &background = ( &background == "dark"? "light" : "dark" )
+    exe "colorscheme " . g:colors_name
+endfunction
+map <leader>b :call TogBG()<cr>
+
 
 "-----------------------------------------------------------------------
 " GUI Settings {
@@ -214,38 +229,10 @@ endif
 " Scripts and addons. These are managed by pathogen and live in bundle/.
 " Most of them are git submodules, so I can keep up to date
 "
-" To add a submodule,
-" git submodule add URL bundle/NAME
-" git submodule init
-" git commit
-" git push
-"
-" After 'git pull', if submodules were added, you may need to
-" git submodule init
-" git submodule update
-
-" To remove a submodule,
-" Delete the relevant line from the .gitmodules file.
-" Delete the relevant section from .git/config.
-" Run git rm --cached path_to_submodule (no trailing slash).
-" Commit and delete the now untracked submodule files.
-"
-
-" fuzzyfinder (fuzzy filename completion)
-nmap <leader>b :FufBuffer<CR>
-nmap <leader>f :call fuf#givenfile#launch('', 0, '> ', split(glob('./**/*'), "\n"))<CR>
-let g:fuf_file_exclude = '\v\~$|\.(o|pdf|dvi|hi|exe|dll|bak|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-highlight Pmenu ctermbg=4 ctermfg=0
-highlight PmenuSel ctermbg=0 ctermfg=4
 
 " potwiki (personal wiki)
 let potwiki_home = "$HOME/Wiki/WelcomePage"
 
-" background black
-set background=dark
-
-" cambiamos el color de fondo y frente del editor
-hi Normal guibg=black guifg=white
 
 " Detect twig filetype
 au BufNewFile,BufRead *.twig set filetype=jinja

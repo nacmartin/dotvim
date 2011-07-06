@@ -20,6 +20,8 @@ imap <C-j> $this->
 " Insert current class name in lowercase
 nmap <buffer> <leader>lcn "=tolower(expand("%:t:r"))<CR>P
 
+map <buffer> <leader>e :s/^\(.*\)$/    protected $\1;/<CR>
+
 " Insert full
 
 " Insert current namespace and opens php and create empty class
