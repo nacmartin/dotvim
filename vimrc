@@ -197,6 +197,7 @@ let g:solarized_termcolors=16
 let g:solarized_termtrans=0
 let g:solarized_menu=0
 let g:solarized_italic=0
+set t_Co=16
 syntax enable
 set background=dark
 colorscheme solarized
@@ -214,7 +215,7 @@ map <leader>b :call TogBG()<cr>
 "-----------------------------------------------------------------------
 " GUI Settings {
 if has("gui_running")
-  colorscheme zenburn
+  exe "colorscheme " . g:colors_name
   set columns=80
   " set guifont=DejaVu\ Sans\ Mono\ 8  " set in ~/.vimrc
 "  set guioptions=ce 

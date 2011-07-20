@@ -25,7 +25,7 @@ map <buffer> <leader>e :s/^\(.*\)$/    protected $\1;/<CR>
 " Insert full
 
 " Insert current namespace and opens php and create empty class
-map <F9> ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#g<CR>Inamespace <ESC>Goclass <C-R>=expand("%:t:r")<CR><CR>{<CR>
+map <F9> ggO<?php<CR><CR><ESC>"%PdF/r;:s#/#\\#g<CR>Inamespace <ESC>Goclass <C-R>=expand("%:t:r")<CR><CR>{<CR>}
 
 map <buffer> <leader>ce gg/class <CR>O/**<CR><ESC>d0i <ESC>A @ORM\Entity<CR>@ORM\Table(name="<C-R>=tolower(expand("%:t:r"))<CR>")<CR>/
 
