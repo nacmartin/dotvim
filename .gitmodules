@@ -3,7 +3,7 @@
 	url = http://github.com/msanders/snipmate.vim.git
 [submodule "bundle/PDV"]
 	path = bundle/PDV
-	url = https://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git
+	url = https://github.com/nacmartin/PDV--phpDocumentor-for-Vim.git
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = git://git.wincent.com/command-t.git
