@@ -249,3 +249,4 @@ fun Ranger()
 endfun
 map <leader>r :call Ranger()
 
+set guifont=Menlo\ Regular:h14
