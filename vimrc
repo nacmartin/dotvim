@@ -28,6 +28,7 @@ Plugin 'spf13/PIV'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'beyondwords/vim-twig'
 Plugin 'joonty/vdebug'
+Plugin 'stephpy/vim-php-cs-fixer'
 
 
 call vundle#end()
@@ -458,3 +459,9 @@ let g:vdebug_options = {
 \}
 
 let g:vdebug_options["break_on_open"]=0
+
+" phpcscodefixer
+let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>:o<CR>
+
