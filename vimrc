@@ -5,7 +5,21 @@ set nocompatible
 " Temporarly, while vundle loads bundles.
 filetype off
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Plugins
+Plugin 'Solarized'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'Command-T'
+Plugin 'bockel/potwiki.vim'
+
+
+call vundle#end()
 
 " Resume operations and behave intelligently for type of file.
 filetype plugin indent on
@@ -203,12 +217,6 @@ colorscheme solarized
 
 " Change background and foreground color
 hi Normal guibg=black guifg=white
-
-function! TogBG()
-    let &background = ( &background == "dark"? "light" : "dark" )
-    exe "colorscheme " . g:colors_name
-endfunction
-map <leader>b :call TogBG()<cr>
 
 
 "-----------------------------------------------------------------------
