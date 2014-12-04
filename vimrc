@@ -255,6 +255,8 @@ let potwiki_home = "$HOME/Wiki/WelcomePage"
 
 " Detect twig filetype
 au BufNewFile,BufRead *.twig set filetype=jinja.javascript
+
+" Detecting Pollen filetype
 au BufNewFile,BufRead *.pm set filetype=html.pollen
 
 " Ranger
