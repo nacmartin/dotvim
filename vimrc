@@ -24,6 +24,10 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
+Plugin 'spf13/PIV'
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'beyondwords/vim-twig'
+Plugin 'joonty/vdebug'
 
 
 call vundle#end()
@@ -426,7 +430,7 @@ nmap <leader>b :TagbarToggle<cr>
 " NerdTree 
 map <leader>n :NERDTreeToggle<CR>
 map <C-e> <plug>NERDTreeTabsToggle<CR>
-map <leader>e :NERDTreeFind<CR>
+map <leader>nf :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
 let NERDTreeShowBookmarks=1
@@ -438,3 +442,19 @@ let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 
+"PIV
+let g:DisableAutoPHPFolding = 1
+let php_folding = 0
+
+"php-namespace
+inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
+noremap <Leader>u :call PhpInsertUse()<CR>
+inoremap <Leader>ec <C-O>:call PhpExpandClass()<CR>
+noremap <Leader>ec :call PhpExpandClass()<CR>
+
+"vdebug
+let g:vdebug_options = {
+\ 'server': '0.0.0.0'
+\}
+
+let g:vdebug_options["break_on_open"]=0
