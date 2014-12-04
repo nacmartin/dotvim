@@ -1,12 +1,14 @@
-"-----------------------------------------------------------------------
 " Basic configuration.
-
 set nomodeline " for security reasons
 set nocompatible
 
-filetype off " temporarily
-silent! call pathogen#helptags() " Load bundles help
-call pathogen#runtime_append_all_bundles() " Load bundles code
+" Temporarly, while vundle loads bundles.
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Resume operations and behave intelligently for type of file.
+filetype plugin indent on
 
 " Set leader to comma.
 let mapleader = ","
@@ -14,9 +16,6 @@ let maplocalleader = ","
 
 " Don't redraw screen while executing macros.
 set nolazyredraw
-
-" Behave intelligently for type of file.
-filetype plugin indent on
 
 " Syntax highlighting.
 function! SyntaxToggle()
@@ -179,7 +178,6 @@ nmap zl :ls!<CR>:buf
 
 " Visit todo list
 nmap <Leader>td :e ~/Wiki/TodoList<CR>
-nmap <Leader>tr :e ~/Wiki/FuentesTrecetas<CR>
 
 function! SearchWiki(searchTerm)
   exec ":vimgrep " . a:searchTerm . " ~/Wiki/*"
@@ -203,7 +201,7 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" cambiamos el color de fondo y frente del editor
+" Change background and foreground color
 hi Normal guibg=black guifg=white
 
 function! TogBG()
@@ -228,7 +226,7 @@ if has("gui_running")
 endif
 
 "-----------------------------------------------------------------------
-" Scripts and addons. These are managed by pathogen and live in bundle/.
+" Scripts and addons. These are managed by vundle and live in bundle/.
 " Most of them are git submodules, so I can keep up to date
 "
 
@@ -240,7 +238,7 @@ let potwiki_home = "$HOME/Wiki/WelcomePage"
 au BufNewFile,BufRead *.twig set filetype=jinja.javascript
 au BufNewFile,BufRead *.pm set filetype=html.pollen
 
-"Ranger
+" Ranger
 fun Ranger()
   silent !ranger --choosefile=/tmp/chosen
   if filereadable('/tmp/chosen')
@@ -273,9 +271,10 @@ com! SfJumpToView call s:SfJumpToView()
 " create a mapping only in a Controller file
 autocmd BufEnter *Controller.php nmap <buffer><leader>v :SfJumpToView<CR>
 
+" Machine specifics in case we need them
 source ~/.vim/machine_specifics
 
-
+" Racket
 if has("autocmd")
     au BufReadPost *.rkt,*.rktl set filetype=scheme
 endif
