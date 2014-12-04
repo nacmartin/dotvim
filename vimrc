@@ -247,7 +247,6 @@ endif
 
 "-----------------------------------------------------------------------
 " Scripts and addons. These are managed by vundle and live in bundle/.
-" Most of them are git submodules, so I can keep up to date
 "
 
 " potwiki (personal wiki)
