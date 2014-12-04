@@ -1,26 +1,25 @@
-This repository contains the contents of my .vim directory.
+This is my dotvim file. It is focused on web development using Symfony2 and
+Javascript (Angular, Backbone).
 
-My .vimrc looks like this:
+I use vundle for plugin management
 
-    " put platform-specific settings here
-    " and then source the common configuration file
-    source ~/.vim/vimrc
+Plugins installed:
 
-All addons go in the bundle directory and are managed by
-pathogen. When possible I install them as git submodules:
-
-git submodule add http://github.com/msanders/snipmate.vim.git bundle/snipmate
-git submodule add http://github.com/scrooloose/nerdtree.git bundle/nerdtree
-git submodule add http://github.com/clones/vim-fuzzyfinder.git bundle/fuzzyfinder
-git submodule add git://github.com/tpope/vim-fugitive.git bundle/fugitive
-
-After a fresh clone of the repository, you need to do this to get
-the submodules:
-
-git submodule init
-git submodule update
-
-If after 'call pathogen#helptags()' you get a warning about a dirty
-submodule, add 'tags' to bundle/REPO/.git/info/exclude, where REPO
-is the repository that is giving the warning.
-
+* Plugin 'Solarized'
+* Plugin 'MarcWeber/vim-addon-mw-utils'
+* Plugin 'tomtom/tlib_vim'
+* Plugin 'garbas/vim-snipmate'
+* Plugin 'bockel/potwiki.vim'
+* Plugin 'tpope/vim-surround'
+* Plugin 'tacahiroy/ctrlp-funky'
+* Plugin 'kien/ctrlp.vim'
+* Plugin 'Shougo/neocomplete.vim'
+* Plugin 'Shougo/neosnippet'
+* Plugin 'Shougo/neosnippet-snippets'
+* Plugin 'majutsushi/tagbar'
+* Plugin 'scrooloose/nerdtree'
+* Plugin 'spf13/PIV'
+* Plugin 'arnaud-lb/vim-php-namespace'
+* Plugin 'beyondwords/vim-twig'
+* Plugin 'joonty/vdebug'
+* Plugin 'stephpy/vim-php-cs-fixer'
