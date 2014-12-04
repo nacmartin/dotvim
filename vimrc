@@ -170,7 +170,8 @@ augroup END
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
 " thanks Douglas Potts).
-map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>i :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>o :w <C-R>=expand("%:p:h") . "/" <CR>
 
 " Use zl to list buffers, and go to matching buffer
 " Type part of bufname after prompt.
@@ -237,6 +238,7 @@ let potwiki_home = "$HOME/Wiki/WelcomePage"
 
 " Detect twig filetype
 au BufNewFile,BufRead *.twig set filetype=jinja.javascript
+au BufNewFile,BufRead *.pm set filetype=html.pollen
 
 "Ranger
 fun Ranger()
@@ -271,4 +273,9 @@ com! SfJumpToView call s:SfJumpToView()
 " create a mapping only in a Controller file
 autocmd BufEnter *Controller.php nmap <buffer><leader>v :SfJumpToView<CR>
 
-source machine_specifics
+source ~/.vim/machine_specifics
+
+
+if has("autocmd")
+    au BufReadPost *.rkt,*.rktl set filetype=scheme
+endif

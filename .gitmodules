@@ -16,3 +16,9 @@
 [submodule "bundle/vim-symfony"]
 	path = bundle/vim-symfony
 	url = https://github.com/docteurklein/vim-symfony.git
+[submodule "bundle/vim-clojure-static"]
+	path = bundle/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static.git
+[submodule "vim-racket"]
+	path = vim-racket
+	url = https://github.com/wlangstroth/vim-racket.git
