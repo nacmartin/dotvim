@@ -437,3 +437,17 @@ let g:php_cs_fixer_path = "/usr/local/bin/php-cs-fixer" " define the path to the
 nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
 nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>:o<CR>
 
+" solarized toggle background
+function! ToggleBackground()
+    if (w:solarized_style=="dark")
+    let w:solarized_style="light"
+    colorscheme solarized
+else
+    let w:solarized_style="dark"
+    colorscheme solarized
+endif
+endfunction
+command! Togbg call ToggleBackground()
+nnoremap <leader>b :call ToggleBackground()<CR>
+inoremap <leader>b <ESC>:call ToggleBackground()<CR>
+vnoremap <leader>b <ESC>:call ToggleBackground()<CR>
