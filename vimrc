@@ -252,42 +252,11 @@ endif
 " potwiki (personal wiki)
 let potwiki_home = "$HOME/Wiki/WelcomePage"
 
-
 " Detecting Pollen filetype
 au BufNewFile,BufRead *.pm set filetype=html.pollen
 
-" Ranger
-fun Ranger()
-  silent !ranger --choosefile=/tmp/chosen
-  if filereadable('/tmp/chosen')
-    exec 'edit ' . system('cat /tmp/chosen')
-    call system('rm /tmp/chosen')
-  endif
-  redraw!
-endfun
-map <leader>r :call Ranger()
-
 " first set path
 set path+=**
-
-" jump to a twig view in symfony
-function! s:SfJumpToView()
-    mark C
-    normal! ]M
-    let end = line(".")
-    normal! [m
-    try
-        call search('\v[^.:]+\.html\.twig', '', end)
-        normal! gf
-    catch
-        normal! g`C
-        echohl WarningMsg | echomsg "Template file not found" | echohl None
-    endtry
-endfunction
-com! SfJumpToView call s:SfJumpToView()
-
-" create a mapping only in a Controller file
-autocmd BufEnter *Controller.php nmap <buffer><leader>v :SfJumpToView<CR>
 
 " Machine specifics in case we need them
 source ~/.vim/machine_specifics
@@ -441,9 +410,14 @@ let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 
-"PIV
+" PIV
+" except for php_folding, the rest of lines have no meaning at all, as they
+" have to be changed directly in PIV, but at least I know what to change there
+" by writting them here
 let g:DisableAutoPHPFolding = 1
 let php_folding = 0
+let g:pdv_cfg_foldmarker = 0
+let g:load_doxygen_syntax = 0
 
 "php-namespace
 inoremap <Leader>u <C-O>:call PhpInsertUse()<CR>
