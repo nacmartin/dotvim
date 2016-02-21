@@ -29,6 +29,8 @@ Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'beyondwords/vim-twig'
 Plugin 'joonty/vdebug'
 Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'wting/rust.vim'
+Plugin 'zerowidth/vim-copy-as-rtf'
 
 
 call vundle#end()
@@ -370,7 +372,7 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
         endif
     endfunction
 
-    imap <expr> <Tab> CleverTab()
+   imap <expr> <Tab> CleverTab()
 " }
 
 " Enable heavy omni completion.
@@ -393,7 +395,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 nmap <leader>z :CtrlPBuffer<cr>
 
 " TagBar
-nmap <leader>b :TagbarToggle<cr>
+nmap <leader>tb :TagbarToggle<cr>
 
 " NerdTree 
 map <leader>n :NERDTreeToggle<CR>
@@ -451,3 +453,5 @@ command! Togbg call ToggleBackground()
 nnoremap <leader>b :call ToggleBackground()<CR>
 inoremap <leader>b <ESC>:call ToggleBackground()<CR>
 vnoremap <leader>b <ESC>:call ToggleBackground()<CR>
+
+autocmd BufNewFile,BufRead *.json set ft=javascript
