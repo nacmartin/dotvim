@@ -31,6 +31,15 @@ Plugin 'joonty/vdebug'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'wting/rust.vim'
 Plugin 'zerowidth/vim-copy-as-rtf'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plugin 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 
 call vundle#end()
@@ -239,7 +248,7 @@ if has("gui_running")
   exe "colorscheme " . g:colors_name
   set columns=80
   " set guifont=DejaVu\ Sans\ Mono\ 8  " set in ~/.vimrc
-"  set guioptions=ce 
+  " set guioptions=ce
   "              ||
   "              |+-- use simple dialogs rather than pop-ups
   "              +  use GUI tabs, not console style tabs
@@ -341,8 +350,8 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
             endif
         endfunction
 
-        " <CR> close popup and save indent or expand snippet 
-        imap <expr> <CR> CleverCr() 
+        " <CR> close popup and save indent or expand snippet
+        imap <expr> <CR> CleverCr()
         " <C-h>, <BS>: close popup and delete backword char.
         inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
         inoremap <expr><C-y> neocomplete#smart_close_popup()
@@ -397,7 +406,7 @@ nmap <leader>z :CtrlPBuffer<cr>
 " TagBar
 nmap <leader>tb :TagbarToggle<cr>
 
-" NerdTree 
+" NerdTree
 map <leader>n :NERDTreeToggle<CR>
 map <C-e> <plug>NERDTreeTabsToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
@@ -455,3 +464,56 @@ inoremap <leader>b <ESC>:call ToggleBackground()<CR>
 vnoremap <leader>b <ESC>:call ToggleBackground()<CR>
 
 autocmd BufNewFile,BufRead *.json set ft=javascript
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+" Rainbow Parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"" Vim Javascript
+"set conceallevel=1
+"set concealcursor=nvic
+"let g:javascript_conceal_function   = "ƒ"
+
+" JSX goodies
+let g:jsx_ext_required = 0
+
+" Syntastic
+let g:syntastic_javascript_checkers = ['eslint']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Mouse scroll in Iterm
+set mouse=a
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
