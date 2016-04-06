@@ -39,8 +39,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tobyS/vmustache'
 Plugin 'tobyS/pdv'
-"Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'ervandew/supertab'
 
 
 call vundle#end()
@@ -443,7 +444,7 @@ end
 
 " ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-f>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -452,4 +453,4 @@ let g:UltiSnipsEditSplit="vertical"
 
 " pdv
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
