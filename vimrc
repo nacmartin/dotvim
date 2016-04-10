@@ -34,13 +34,13 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
 Plugin 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plugin 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tobyS/vmustache'
 Plugin 'tobyS/pdv'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
 
 
@@ -422,7 +422,9 @@ let g:jsx_ext_required = 0
 
 " Syntastic
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_phpmd_disable = 1
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_html_checkers = []
+let g:syntastic_php_phpcs_args = "--report=csv --standard=WordPress"
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -453,4 +455,4 @@ let g:UltiSnipsEditSplit="vertical"
 
 " pdv
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
+nnoremap <leader>pv :call pdv#DocumentWithSnip()<CR>
