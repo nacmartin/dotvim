@@ -39,9 +39,10 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tobyS/vmustache'
 Plugin 'tobyS/pdv'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'ervandew/supertab'
+Plugin 'lambdatoast/elm.vim'
 
 
 call vundle#end()
